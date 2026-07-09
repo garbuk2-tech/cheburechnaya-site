@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чебуречная «Тот самый» — Гостагаевская</title>
+<meta name="description" content="Беляши, пирожки, чебуреки и бурятские буузы. Тесто, что не рвётся. Горячее навынос и заморозка домой. Гостагаевская, Октябрьская 45А.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#6FA82C; --green-deep:#578A1E; --ink:#0B0B0B; --paper:#FFFFFF;
+    --mint:#EEF5E0; --line:#ECECEC; --muted:#5B5B5B;
+    --f:'Montserrat',system-ui,sans-serif; --wrap:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--f);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 22px}
+  section{padding:clamp(52px,8vw,104px) 0}
+  h1,h2,h3{font-weight:900;letter-spacing:-.02em;line-height:.95;text-transform:uppercase;text-wrap:balance}
+  h2{font-size:clamp(2rem,6vw,4rem)}
+  .eyebrow{font-weight:800;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-deep)}
+  .ast{color:var(--green)}
+  a{color:inherit}
+  .btn{font-family:var(--f);font-weight:800;font-size:.92rem;letter-spacing:.03em;text-transform:uppercase;
+    padding:15px 28px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+    border:2px solid var(--green);background:var(--green);color:#fff;cursor:pointer;
+    transition:transform .14s ease,background .14s ease,color .14s ease}
+  .btn:hover{transform:translateY(-2px);background:var(--green-deep);border-color:var(--green-deep)}
+  .btn.out{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn.out:hover{background:var(--ink);color:#fff}
+  .btn.on-dark{color:#fff}
+  .btn.on-dark.out{color:#fff;border-color:#fff}
+  .btn.on-dark.out:hover{background:#fff;color:var(--ink)}
+  .btn svg{width:19px;height:19px}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-weight:900;font-size:1.25rem;letter-spacing:-.02em;text-transform:uppercase;text-decoration:none}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-weight:700;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.02em}
+  .nav-links a.pill{background:var(--green);color:#fff;padding:10px 20px;border-radius:999px}
+  @media (max-width:640px){.nav-links a:not(.pill){display:none}}
+
+  /* HERO */
+  .hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero .panels{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr}
+  .hero .panels figure{position:relative;overflow:hidden;margin:0}
+  .hero .panels img{width:100%;height:100%;object-fit:cover}
+  .hero .panels figcaption{position:absolute;top:14px;left:14px;background:rgba(11,11,11,.62);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .marquee{background:var(--green);color:#fff;padding:15px 0;overflow:hidden;white-space:nowrap}
+  .marquee-track{display:inline-flex;animation:scrollx 26s linear infinite;will-change:transform}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee-track span{font-weight:900;text-transform:uppercase;font-size:1.05rem;letter-spacing:.02em;padding:0 24px;display:inline-flex;align-items:center}
+  .marquee-track span::after{content:'✳';color:#0a4a24;font-size:.7em;margin-left:24px}
+  @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.72))}
+  .hero .wrap{position:relative;z-index:2;padding-top:60px;padding-bottom:clamp(40px,6vw,72px)}
+  .hero .eyebrow{color:#fff;opacity:.9}
+  .hero h1{font-size:clamp(3rem,13vw,8.2rem);color:#fff;margin:12px 0 14px}
+  .hero p{font-size:clamp(1.05rem,2.5vw,1.4rem);font-weight:600;max-width:40ch;margin-bottom:26px}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .hero .btn.out{color:#fff;border-color:#fff}
+  .hero .btn.out:hover{background:#fff;color:var(--ink)}
+
+  /* GREEN STRIP */
+  .strip{background:var(--mint)}
+  .strip .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
+    padding:26px 22px}
+  .strip .big{font-weight:900;font-size:clamp(1.1rem,2.6vw,1.7rem);text-transform:uppercase;letter-spacing:-.01em}
+
+  /* FEATURE */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .feature img{border-radius:18px;aspect-ratio:1/1;object-fit:cover;width:100%}
+  .feature h2{margin:10px 0 14px}
+  .feature p{color:var(--muted);font-weight:500;margin-bottom:24px;max-width:46ch}
+
+  /* CRAVE (dark) */
+  .dark{background:var(--ink);color:#fff}
+  .dark .eyebrow{color:var(--green)}
+  .crave-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:36px}
+  .crave-head h2{color:#fff}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .pcard{background:#fff;border-radius:18px;overflow:hidden;color:var(--ink);display:flex;flex-direction:column}
+  .pcard img{aspect-ratio:4/3;object-fit:cover;width:100%}
+  .pcard .b{padding:20px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .pcard h3{font-size:1.15rem}
+  .pcard p{font-size:.9rem;color:var(--muted);font-weight:500;flex:1}
+  .pcard .price{font-weight:900;color:var(--green-deep)}
+  .pcard .btn{align-self:flex-start;margin-top:8px;padding:10px 18px;font-size:.8rem}
+
+  /* PROOF green */
+  .proof{background:var(--green);color:#fff}
+  .proof h2{color:#fff;font-size:clamp(2.2rem,7vw,5rem)}
+  .proof .q-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .proof .q{background:rgba(255,255,255,.14);border-radius:16px;padding:24px;font-weight:600;font-size:1.02rem}
+  .proof .q b{display:block;margin-top:12px;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+  .proof .rate{margin-top:24px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.9rem;opacity:.95}
+
+  /* LOCATION dark */
+  .loc{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .loc img{border-radius:18px;aspect-ratio:16/11;object-fit:cover;width:100%}
+  .loc h2{color:#fff;margin:10px 0 16px}
+  .loc .info{font-weight:600;font-size:1.1rem;line-height:2}
+  .loc .info span{color:var(--green)}
+
+  /* HOW */
+  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+  .step .n{width:44px;height:44px;border-radius:999px;background:var(--green);color:#fff;font-weight:900;
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:16px}
+  .step h3{font-size:1.2rem;margin-bottom:6px}
+  .step p{color:var(--muted);font-weight:500}
+
+  /* STORY */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+  .story img{border-radius:18px;aspect-ratio:4/3;object-fit:cover;width:100%}
+  .story h2{margin:10px 0 16px}
+  .story p{color:var(--muted);font-weight:500;margin-bottom:14px;max-width:46ch}
+
+  /* MENU */
+  .menu-grid{columns:2;column-gap:48px;margin-top:34px}
+  @media (max-width:680px){.menu-grid{columns:1}}
+  .mrow{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);
+    break-inside:avoid}
+  .mrow .n{font-weight:800}
+  .mrow .d{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-5px)}
+  .mrow .p{font-weight:900;color:var(--green-deep);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .mhit{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--green);
+    color:#fff;padding:2px 7px;border-radius:6px;margin-left:8px;vertical-align:middle}
+  .mnote{margin-top:18px;color:var(--muted);font-weight:500;font-size:.92rem}
+
+  /* FOOTER */
+  footer{background:var(--green);color:#fff;padding-top:56px;overflow:hidden}
+  footer .cols{display:flex;flex-wrap:wrap;gap:26px 60px;justify-content:space-between;padding-bottom:40px}
+  footer .lbl{font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-bottom:8px}
+  footer .val{font-weight:600;line-height:1.9}
+  footer .val a{text-decoration:underline;text-underline-offset:3px}
+  .wordmark{font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.82;
+    font-size:clamp(3.4rem,17vw,15rem);margin:0 -2px -.12em;white-space:nowrap}
+
+  @media (max-width:860px){
+    .feature,.loc,.story{grid-template-columns:1fr;gap:26px}
+    .feature img{order:-1}
+    .cards{grid-template-columns:1fr 1fr}
+    .proof .q-row{grid-template-columns:1fr}
+    .how{grid-template-columns:1fr}
+  }
+  @media (max-width:480px){ .cards{grid-template-columns:1fr} body{font-size:16px} }
+  /* фикс-плашка заказа */
+  .orderbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px;display:flex;justify-content:center;box-shadow:0 -6px 22px rgba(0,0,0,.12);transition:transform .25s ease}
+  .orderbar.hidden{transform:translateY(130%)}
+  .orderbar .btn{width:100%;max-width:440px;justify-content:center;font-size:1rem}
+  body{padding-bottom:76px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#" style="display:inline-flex;align-items:center;gap:10px">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#6FA82C"/><circle cx="50" cy="50" r="38" fill="none" stroke="#F3E7CE" stroke-width="3"/><path d="M30 54 Q50 34 70 54 Q50 63 30 54 Z" fill="#E0A43A" stroke="#F3E7CE" stroke-width="2.5"/></svg>
+      <span style="display:flex;flex-direction:column;line-height:1"><span style="font-size:.5em;font-weight:800;letter-spacing:.14em;color:var(--muted)">ЧЕБУРЕЧНАЯ</span><span>Тот самый<span class="ast">*</span></span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#menu">Меню</a>
+      <a href="#how">Как заказать</a>
+      <a class="pill" href="#zakaz">Заказать</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="panels">
+    <figure><img src="img/hero1.jpg" alt="Чебурек с пылу с жару"></figure>
+    <figure><img src="img/eat-man.jpg" alt="Гостья с буузой"><figcaption>Сочные буузы</figcaption></figure>
+    <figure><img src="img/hero3.jpg" alt="Бери с собой"><figcaption>Бери с собой</figcaption></figure>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Чебуречная «Тот самый» · Гостагаевская</div>
+    <h1>С пылу<br>с жару</h1>
+    <p>Беляши, пирожки, чебуреки и бурятские буузы. Тесто, что не рвётся.</p>
+    <div class="cta">
+      <a class="btn" href="#zakaz">Заказать</a>
+      <a class="btn out" href="#menu">Смотреть меню</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Чебуреки</span><span>Беляши</span><span>Пирожки</span><span>Буузы</span><span>Корн-доги</span><span>Заморозка</span>
+    <span>Чебуреки</span><span>Беляши</span><span>Пирожки</span><span>Буузы</span><span>Корн-доги</span><span>Заморозка</span>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="big">Горячее каждый день с 8:00 до 18:00, без выходных</div>
+    <a class="btn" href="#zakaz">Заказать</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap feature">
+    <div>
+      <div class="eyebrow">Новинка</div>
+      <h2>Бурятские буузы</h2>
+      <p>Настоящие позы с сочным бульоном. За ними едут даже из Анапы. Бери горячими на месте или домой в заморозке. Состав: говядина, свинина, лук, соль, чёрный перец.</p>
+      <a class="btn" href="#zakaz">Хочу буузы</a>
+    </div>
+    <!-- TODO(клиент): заменить на реальное фото своих буузов -->
+    <img src="img/buuzy.jpg" alt="Буузы с бульоном">
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="crave-head">
+      <div><div class="eyebrow">Создано, чтобы хотеть</div><h2>Меню на&nbsp;любой голод</h2></div>
+      <a class="btn on-dark out" href="#menu">Всё меню</a>
+    </div>
+    <div class="cards">
+      <div class="pcard"><img src="img/prod-cheburek.jpg" alt="Чебуреки"><div class="b"><h3>Чебуреки <span class="mhit" style="background:var(--green)">под заказ</span></h3><span class="price">от 135 ₽</span></div></div>
+      <div class="pcard"><img src="img/prod-belyash.jpg" alt="Беляши"><div class="b"><h3>Беляши <span class="mhit">хит</span></h3><span class="price">100 ₽</span></div></div>
+      <div class="pcard"><img src="img/real-pirozhki.jpg" alt="Пирожки"><div class="b"><h3>Пирожки <span class="mhit">хит</span></h3><span class="price">65 ₽</span></div></div>
+      <div class="pcard"><img src="img/real-sosiska.jpg" alt="Сосиска в тесте"><div class="b"><h3>Сосиска в тесте</h3><span class="price">100 ₽</span></div></div>
+      <div class="pcard"><img src="img/plescavica.jpg" alt="Плескавица в пите"><div class="b"><h3>Плескавица в пите</h3><span class="price">350 ₽</span></div></div>
+      <div class="pcard"><img src="img/korndog.jpg" alt="Корн-дог"><div class="b"><h3>Корн-дог</h3><span class="price">200 ₽</span></div></div>
+      <div class="pcard"><img src="img/hotdog.jpg" alt="Хот-дог"><div class="b"><h3>Хот-дог</h3><span class="price">250 ₽</span></div></div>
+      <div class="pcard"><img src="img/fries.jpg" alt="Картофель фри"><div class="b"><h3>Картофель фри</h3><span class="price">100 ₽</span></div></div>
+      <div class="pcard"><img src="img/cheesesticks.jpg" alt="Сырные палочки"><div class="b"><h3>Сырные палочки <span class="mhit" style="background:var(--green)">6 шт</span></h3><span class="price">150 ₽</span></div></div>
+      <div class="pcard"><img src="img/sandwich.jpg" alt="Сэндвич с курицей"><div class="b"><h3>Сэндвич с курицей</h3><span class="price">160 ₽</span></div></div>
+      <div class="pcard"><img src="img/buuzy.jpg" alt="Буузы"><div class="b"><h3>Буузы <span class="mhit" style="background:var(--green)">фирменное</span></h3><span class="price">75 ₽/шт</span></div></div>
+      <div class="pcard"><img src="img/frozen.jpg" alt="Заморозка"><div class="b"><h3>Заморозка</h3><span class="price">пельмени 600 ₽/кг</span></div></div>
+      <div class="pcard"><img src="img/coffee.jpg" alt="Кофе с собой"><div class="b"><h3>Кофе с собой</h3><span class="price">110 ₽</span></div></div>
+      <div class="pcard"><img src="img/tea.jpg" alt="Чай"><div class="b"><h3>Чай в крафте</h3><span class="price">по меню</span></div></div>
+      <div class="pcard"><img src="img/mors.jpg" alt="Морс"><div class="b"><h3>Морс 0.3</h3><span class="price">100 ₽</span></div></div>
+      <div class="pcard"><img src="img/tomato.jpg" alt="Томатный сок"><div class="b"><h3>Томатный сок 0.3</h3><span class="price">70 ₽</span></div></div>
+      <div class="pcard"><img src="img/ayran.jpg" alt="Айран с укропом"><div class="b"><h3>Айран с укропом 0.5</h3><span class="price">по меню</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#fff;opacity:.85">Что говорят гости</div>
+    <h2>В Анапе таких<br>не поешь</h2>
+    <div class="q-row">
+      <div class="q">«Придётся ездить в Гостагаевскую отводить душу. Настоятельно рекомендую всем».<b>Светлана</b></div>
+      <div class="q">«Купила замороженные позы. Ни одна не лопнула при варке, всё с бульоном».<b>Оксана</b></div>
+      <div class="q">«Специально съездили за позами. Пожалели, что мало купили, надо опять ехать».<b>Юрий</b></div>
+    </div>
+    <div class="rate">Рейтинг 4.3 на Яндекс.Картах · отзывы из чата «Забайкальцы в Анапе»</div>
+  </div>
+</section>
+
+<section class="dark" id="zakaz" style="scroll-margin-top:78px">
+  <div class="wrap loc">
+    <!-- TODO(клиент): заменить на реальное фото витрины/точки -->
+    <img src="img/zahodi-anim.webp" alt="Свежие буузы" style="border-radius:18px;aspect-ratio:16/11;object-fit:cover;width:100%">
+    <div>
+      <div class="eyebrow">Заказать</div>
+      <h2>Выбери удобный<br>способ</h2>
+      <div class="info" style="margin-bottom:22px">
+        <div><span>Адрес:</span> Октябрьская 45А, Гостагаевская</div>
+        <div><span>Часы:</span> с 8:00 до 18:00, без выходных</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a class="btn" href="https://t.me/+sRaKwh6xwmlhZThi" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>Telegram</a>
+        <a class="btn" href="https://max.ru/join/w19cRtZe02OzBAyBEC95LBJU1BttEEW5Txd3GDrkWj0" target="_blank" rel="noopener">Max</a>
+        <a class="btn out" href="tel:+79243728355" style="color:#fff;border-color:#fff">Позвонить</a>
+      </div>
+      <p style="color:#cfcfcf;font-size:.92rem;margin-top:14px">Пиши в Telegram или Max, либо звони — как удобнее.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="eyebrow">Проще простого</div>
+    <h2>Как заказать</h2>
+    <div class="how">
+      <div class="step"><div class="n">1</div><h3>Напиши или позвони</h3><p>Беляши и пирожки всегда готовы. Чебуреки под заказ — напиши в Telegram или позвони.</p></div>
+      <div class="step"><div class="n">2</div><h3>Выбери чебурек</h3><p>Скажи, какой приготовить: свинина, мраморная говядина или сыр.</p></div>
+      <div class="step"><div class="n">3</div><h3>Забери горячим</h3><p>С пылу с жару — горячий, хрустящий и сочный. Октябрьская 45А.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="strip" style="background:var(--mint)">
+  <div class="wrap story" style="background:none">
+    <!-- TODO(клиент): заменить на реальное фото хозяек/кухни -->
+    <img src="img/kitchen-anim.webp" alt="Жарим беляши с пылу с жару" style="border-radius:18px;aspect-ratio:4/3;object-fit:cover;width:100%">
+    <div>
+      <div class="eyebrow">Кто готовит</div>
+      <h2>Готовим<br>как дома</h2>
+      <p>Замешиваем тесто сами и начинку готовим сами — всё из натуральных продуктов, без усилителей вкуса и сои.</p>
+      <p>Жарим небольшими партиями, чтобы каждый беляш и чебурек были с пылу с жару.</p>
+      <p style="font-weight:800;color:var(--green-deep)">Всё как дома. Честно и по-настоящему.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap feature">
+    <div>
+      <div class="eyebrow">Забери впрок</div>
+      <h2 style="color:#fff">Заморозка</h2>
+      <p style="color:#cfcfcf">Буузы 75 ₽ за штуку, домашние пельмени ручной лепки 600 ₽ за кг и вареники с картошкой и луком 450 ₽ за кг.</p>
+      <a class="btn" href="#zakaz">Заказать заморозку</a>
+    </div>
+    <!-- TODO(клиент): заменить на реальное фото заморозки в вашей упаковке -->
+    <img src="img/frozen.jpg" alt="Заморозка домой" style="border-radius:18px;aspect-ratio:1/1;object-fit:cover;width:100%">
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="eyebrow">Что берут</div>
+    <h2>Меню и цены</h2>
+    <div class="menu-grid">
+      <div class="mrow"><span class="n">Чебурек со свининой <small style="font-weight:500;color:var(--muted)">190 г</small></span><span class="d"></span><span class="p">135 ₽</span></div>
+      <div class="mrow"><span class="n">Чебурек с мраморной говядиной <small style="font-weight:500;color:var(--muted)">190 г</small></span><span class="d"></span><span class="p">155 ₽</span></div>
+      <div class="mrow"><span class="n">Чебурек с сыром сулугуни <small style="font-weight:500;color:var(--muted)">190 г</small></span><span class="d"></span><span class="p">180 ₽</span></div>
+      <div class="mrow"><span class="n">Беляш с мясом <small style="font-weight:500;color:var(--muted)">свинина, лук, перец · 120 г</small><span class="mhit">хит</span></span><span class="d"></span><span class="p">100 ₽</span></div>
+      <div class="mrow"><span class="n">Пирожки <small style="font-weight:500;color:var(--muted)">капуста · яйцо и зелёный лук · картофель с зеленью · 120 г</small><span class="mhit">хит</span></span><span class="d"></span><span class="p">65 ₽</span></div>
+      <div class="mrow"><span class="n">Сосиска с картофельным пюре в тесте <small style="font-weight:500;color:var(--muted)">120 г</small></span><span class="d"></span><span class="p">100 ₽</span></div>
+      <div class="mrow"><span class="n">Корн-дог <small style="font-weight:500;color:var(--muted)">128 г</small></span><span class="d"></span><span class="p">200 ₽</span></div>
+      <div class="mrow"><span class="n">Хот-дог <small style="font-weight:500;color:var(--muted)">120 г</small></span><span class="d"></span><span class="p">250 ₽</span></div>
+      <div class="mrow"><span class="n">Картофель фри <small style="font-weight:500;color:var(--muted)">100 г</small></span><span class="d"></span><span class="p">100 ₽</span></div>
+      <div class="mrow"><span class="n">Сырные палочки <small style="font-weight:500;color:var(--muted)">6 шт</small></span><span class="d"></span><span class="p">150 ₽</span></div>
+      <div class="mrow"><span class="n">Курица в сухарях <small style="font-weight:500;color:var(--muted)">150 г</small></span><span class="d"></span><span class="p">200 ₽</span></div>
+      <div class="mrow"><span class="n">Плескавица в пите <small style="font-weight:500;color:var(--muted)">190 г</small></span><span class="d"></span><span class="p">350 ₽</span></div>
+      <div class="mrow"><span class="n">Буузы (позы) <small style="font-weight:500;color:var(--muted)">говядина, свинина, лук, специи</small><span class="mhit">фирменное</span></span><span class="d"></span><span class="p">75 ₽/шт</span></div>
+      <div class="mrow"><span class="n">Пельмени домашние, заморозка <small style="font-weight:500;color:var(--muted)">ручная лепка</small></span><span class="d"></span><span class="p">600 ₽/кг</span></div>
+      <div class="mrow"><span class="n">Вареники с картошкой и луком, заморозка</span><span class="d"></span><span class="p">450 ₽/кг</span></div>
+      <div class="mrow"><span class="n">Кофе латте <small style="font-weight:500;color:var(--muted)">250 мл</small></span><span class="d"></span><span class="p">180 ₽</span></div>
+      <div class="mrow"><span class="n">Капучино <small style="font-weight:500;color:var(--muted)">250 мл</small></span><span class="d"></span><span class="p">170 ₽</span></div>
+      <div class="mrow"><span class="n">Американо <small style="font-weight:500;color:var(--muted)">250 мл</small></span><span class="d"></span><span class="p">140 ₽</span></div>
+      <div class="mrow"><span class="n">Кофе чёрный · 3 в 1</span><span class="d"></span><span class="p">60 ₽</span></div>
+      <div class="mrow"><span class="n">Чай чёрный</span><span class="d"></span><span class="p">60 ₽</span></div>
+      <div class="mrow"><span class="n">Морс клюквенный <small style="font-weight:500;color:var(--muted)">300 мл</small></span><span class="d"></span><span class="p">110 ₽</span></div>
+      <div class="mrow"><span class="n">Сок томатный <small style="font-weight:500;color:var(--muted)">300 мл</small></span><span class="d"></span><span class="p">100 ₽</span></div>
+      <div class="mrow"><span class="n">Добавки к чебуреку <small style="font-weight:500;color:var(--muted)">соусы · сыр · халапеньо · 40 г</small></span><span class="d"></span><span class="p">60 ₽</span></div>
+    </div>
+    <p class="mnote">Цены с витрины, июль 2026. Буузы и пельмени лепим и морозим под заказ.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><div class="lbl">Адрес</div><div class="val">ст. Гостагаевская<br>Октябрьская 45А</div></div>
+      <div><div class="lbl">Часы</div><div class="val">Каждый день<br>с 8:00 до 18:00</div></div>
+      <div><div class="lbl">Заказ</div><div class="val"><a href="https://t.me/+sRaKwh6xwmlhZThi" target="_blank" rel="noopener">Telegram — группа</a><br><a href="https://max.ru/join/w19cRtZe02OzBAyBEC95LBJU1BttEEW5Txd3GDrkWj0" target="_blank" rel="noopener">Max</a><br><a href="tel:+79243728355">+7 924 372-83-55</a><br><a href="https://yandex.ru/maps/?text=Гостагаевская Октябрьская 45А" target="_blank" rel="noopener">Как добраться</a></div></div>
+      <div><div class="lbl">Готовим руками</div><div class="val">Наталья и Вера</div></div>
+    </div>
+    <div class="wordmark">Тот самый<span style="color:#0B0B0B">*</span></div>
+  </div>
+</footer>
+
+<div class="orderbar" id="orderbar">
+  <a class="btn" href="#zakaz">Заказать</a>
+</div>
+<script>
+(function(){var b=document.getElementById('orderbar'),z=document.getElementById('zakaz');
+if('IntersectionObserver' in window && z){new IntersectionObserver(function(e){b.classList.toggle('hidden',e[0].isIntersecting);},{threshold:.15}).observe(z);}})();
+</script>
+</body>
+</html>
