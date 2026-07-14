@@ -826,12 +826,23 @@ let quizCorrect = 0, quizStreak = 0, quizWordKey = null, quizAnswered = false;
 function wordKey(cat, sr){ return cat + "::" + sr; }
 
 let cachedVoices = [];
+let speechOK = true;
 function loadVoices(){
-  if("speechSynthesis" in window) cachedVoices = window.speechSynthesis.getVoices();
+  try{
+    cachedVoices = window.speechSynthesis.getVoices();
+  }catch(e){
+    speechOK = false;
+  }
 }
-if("speechSynthesis" in window){
-  loadVoices();
-  window.speechSynthesis.onvoiceschanged = loadVoices;
+try{
+  if("speechSynthesis" in window){
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  } else {
+    speechOK = false;
+  }
+}catch(e){
+  speechOK = false;
 }
 
 function pickVoice(){
@@ -849,18 +860,22 @@ function pickVoice(){
 }
 
 function speak(text){
-  if(!("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  const voice = pickVoice();
-  if(voice){
-    u.voice = voice;
-    u.lang = voice.lang;
-  } else {
-    u.lang = "sr-RS";
+  if(!speechOK) return;
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const voice = pickVoice();
+    if(voice){
+      u.voice = voice;
+      u.lang = voice.lang;
+    } else {
+      u.lang = "sr-RS";
+    }
+    u.rate = 0.85;
+    window.speechSynthesis.speak(u);
+  }catch(e){
+    speechOK = false;
   }
-  u.rate = 0.85;
-  window.speechSynthesis.speak(u);
 }
 
 function makeSpeakBtn(text){
@@ -1021,8 +1036,8 @@ document.getElementById("modeQuiz").onclick = () => {
 };
 document.getElementById("quizNext").onclick = pickQuizQuestion;
 
-renderFalseFriends();
-render();
+try{ renderFalseFriends(); }catch(e){}
+try{ render(); }catch(e){}
 </script>
 
 </body>
