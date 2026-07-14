@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zdravo — сербский язык для переезда</title>
+<style>
+  :root{
+    --bg:#faf7f2;
+    --surface:#ffffff;
+    --surface-2:#f3efe6;
+    --ink:#1b2233;
+    --muted:#6b6357;
+    --line:#e7e2d8;
+    --navy:#122344;
+    --navy-2:#1b2f57;
+    --navy-tint:#e7ebf4;
+    --red:#c8102e;
+    --red-2:#a80d26;
+    --red-tint:#fbe7e9;
+    --green:#177244;
+    --green-tint:#e4f6ec;
+    --radius:16px;
+    --serif:Iowan Old Style,Palatino Linotype,Palatino,Georgia,"Noto Serif",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1526;
+      --surface:#16213d;
+      --surface-2:#1b2947;
+      --ink:#eef1f8;
+      --muted:#98a3c2;
+      --line:#263258;
+      --navy:#1c2f57;
+      --navy-2:#28407a;
+      --navy-tint:#1f2c4d;
+      --red:#e6395a;
+      --red-2:#ff5577;
+      --red-tint:#3a1a26;
+      --green:#3fcf8a;
+      --green-tint:#123626;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1526;
+    --surface:#16213d;
+    --surface-2:#1b2947;
+    --ink:#eef1f8;
+    --muted:#98a3c2;
+    --line:#263258;
+    --navy:#1c2f57;
+    --navy-2:#28407a;
+    --navy-tint:#1f2c4d;
+    --red:#e6395a;
+    --red-2:#ff5577;
+    --red-tint:#3a1a26;
+    --green:#3fcf8a;
+    --green-tint:#123626;
+  }
+  :root[data-theme="light"]{
+    --bg:#faf7f2;
+    --surface:#ffffff;
+    --surface-2:#f3efe6;
+    --ink:#1b2233;
+    --muted:#6b6357;
+    --line:#e7e2d8;
+    --navy:#122344;
+    --navy-2:#1b2f57;
+    --navy-tint:#e7ebf4;
+    --red:#c8102e;
+    --red-2:#a80d26;
+    --red-tint:#fbe7e9;
+    --green:#177244;
+    --green-tint:#e4f6ec;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+  :focus-visible{outline:2px solid var(--red);outline-offset:2px;}
+
+  /* Header */
+  header{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#fff;
+    padding:56px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    right:-60px;top:-60px;
+    width:280px;height:280px;
+    background:radial-gradient(circle,var(--red) 0%,transparent 70%);
+    opacity:.35;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;font-size:20px;letter-spacing:.2px;
+    margin-bottom:40px;
+  }
+  .brand-badge{
+    width:32px;height:32px;border-radius:9px;
+    background:var(--red);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;
+  }
+  header h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(30px,5vw,48px);
+    margin:0 0 16px;
+    max-width:640px;
+    line-height:1.18;
+    text-wrap:balance;
+  }
+  header p.lead{
+    font-size:18px;
+    color:#cfd8ee;
+    max-width:520px;
+    margin:0 0 32px;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:14px 26px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:15px;
+    font-family:var(--sans);
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 8px 20px rgba(200,16,46,.35);}
+  .btn-primary:hover{background:var(--red-2);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25);}
+
+  /* Why section */
+  .why{padding:56px 0 20px;}
+  .why h2{font-family:var(--serif);font-weight:600;font-size:28px;margin:0 0 8px;text-wrap:balance;}
+  .why .sub{color:var(--muted);margin:0 0 32px;max-width:560px;}
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:760px){.cards3{grid-template-columns:1fr;}}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .card .emoji{font-size:26px;margin-bottom:10px;display:block;}
+  .card h3{margin:0 0 6px;font-size:16px;}
+  .card p{margin:0;color:var(--muted);font-size:14px;}
+
+  /* Trainer */
+  .trainer{padding:60px 0 20px;}
+  .trainer-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+  .trainer-head h2{font-family:var(--serif);font-weight:600;font-size:28px;margin:0 0 4px;text-wrap:balance;}
+  .trainer-head p{margin:0;color:var(--muted);}
+
+  .progress-pill{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:13px;
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+    color:var(--navy);
+  }
+
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+  .tab{
+    padding:10px 16px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    font-size:14px;
+    font-weight:600;
+    font-family:var(--sans);
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+  .mode-row{display:flex;gap:8px;margin-bottom:24px;}
+  .mode-btn{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    font-weight:700;
+    font-size:14px;
+    font-family:var(--sans);
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .mode-btn.active{background:var(--red);color:#fff;border-color:var(--red);}
+
+  /* Speaker button (Web Speech API) */
+  .speak-btn{
+    border:none;
+    background:rgba(18,35,68,.08);
+    color:var(--navy);
+    width:26px;height:26px;
+    border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:13px;
+    line-height:1;
+    cursor:pointer;
+    padding:0;
+  }
+  .speak-btn:hover{background:rgba(18,35,68,.16);}
+  .flip-back .speak-btn{background:rgba(255,255,255,.18);color:#fff;margin-bottom:8px;}
+  .flip-back .speak-btn:hover{background:rgba(255,255,255,.3);}
+
+  /* Flashcard grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media (max-width:760px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.grid{grid-template-columns:1fr;}}
+
+  .flip-card{
+    perspective:1000px;
+    height:126px;
+    cursor:pointer;
+  }
+  .flip-inner{
+    position:relative;width:100%;height:100%;
+    transition:transform .5s;
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:10px;text-align:center;
+    border:1px solid var(--line);
+  }
+  .flip-front{background:var(--surface);}
+  .flip-back{background:var(--navy);color:#fff;transform:rotateY(180deg);border-color:var(--navy);}
+  .flip-face .word{font-weight:700;font-size:16px;}
+  .flip-face .pron{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px;}
+  .flip-back .pron{color:#b9c4dd;}
+  .flip-face .learned-dot{
+    position:absolute;top:8px;right:8px;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--green);
+    display:none;
+  }
+  .flip-card.learned .flip-front .learned-dot{display:block;}
+
+  /* Quiz */
+  .quiz-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px;
+    text-align:center;
+  }
+  .quiz-box .q-label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+  .quiz-box .q-word{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--navy);margin-bottom:26px;}
+  :root[data-theme="dark"] .quiz-box .q-word{color:#fff;}
+  @media (prefers-color-scheme: dark){.quiz-box .q-word{color:#fff;}}
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:520px){.options{grid-template-columns:1fr;}}
+  .opt{
+    position:relative;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:var(--surface-2);
+    font-family:var(--sans);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:left;
+  }
+  .opt-word{font-size:15px;font-weight:700;padding-right:30px;}
+  .opt-pron{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px;}
+  .opt .speak-btn{position:absolute;top:10px;right:10px;}
+  .opt.correct{background:var(--green-tint);border-color:var(--green);color:var(--green);}
+  .opt.correct .opt-pron{color:var(--green);opacity:.85;}
+  .opt.wrong{background:var(--red-tint);border-color:var(--red);color:var(--red-2);}
+  .opt.wrong .opt-pron{color:var(--red-2);opacity:.85;}
+  .quiz-stats{display:flex;justify-content:center;gap:24px;margin-top:22px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .quiz-stats b{color:var(--ink);}
+  .quiz-next{margin-top:20px;display:none;}
+
+  /* False friends */
+  .ff{padding:60px 0;}
+  .ff h2{font-family:var(--serif);font-weight:600;font-size:28px;margin:0 0 8px;text-wrap:balance;}
+  .ff .sub{color:var(--muted);margin:0 0 28px;max-width:600px;}
+  .ff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media (max-width:700px){.ff-grid{grid-template-columns:1fr;}}
+  .ff-card{
+    background:var(--navy);
+    color:#fff;
+    border-radius:14px;
+    padding:20px;
+  }
+  .ff-card .sr-word-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .ff-card .sr-word{font-family:var(--serif);font-size:22px;font-weight:600;}
+  .ff-card .looks{font-family:var(--mono);font-size:13px;color:#b9c4dd;margin-bottom:10px;}
+  .ff-card .looks span{color:#ff8fa3;text-decoration:line-through;}
+  .ff-card .means{
+    background:rgba(255,255,255,.08);
+    border-radius:8px;padding:8px 12px;
+    font-size:14px;
+  }
+  .ff-card .means b{color:#8fe0b0;}
+
+  footer{
+    padding:40px 0 60px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="brand-badge">🇷🇸</span> Zdravo</div>
+    <h1>Сербский язык для тех, кто переезжает, а не сдаёт экзамен</h1>
+    <p class="lead">Живые слова и фразы для быта, бюрократии и рынка — без учебников и грамматических таблиц. 10 минут в день.</p>
+    <div class="cta-row">
+      <a href="#trainer" class="btn btn-primary">Начать бесплатно</a>
+      <a href="#false-friends" class="btn btn-ghost">Ложные друзья →</a>
+    </div>
+  </div>
+</header>
+
+<section class="why">
+  <div class="wrap">
+    <h2>Почему не Duolingo</h2>
+    <p class="sub">Обычные приложения учат языку в целом. Мы — только тому, что реально понадобится в первые месяцы в Сербии.</p>
+    <div class="cards3">
+      <div class="card">
+        <span class="emoji">🏠</span>
+        <h3>Быт и переезд</h3>
+        <p>Аренда квартиры, банк, аптека, вид на жительство — фразы, которые нужны в первую неделю.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">⚠️</span>
+        <h3>Ложные друзья</h3>
+        <p>Сербские слова, которые звучат по-русски, но означают совсем другое. Одна такая ошибка — и неловкая ситуация обеспечена.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🔊</span>
+        <h3>Слушай и повторяй</h3>
+        <p>У каждого слова есть транскрипция и озвучка — учите не только написание, но и правильное произношение.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trainer" id="trainer">
+  <div class="wrap">
+    <div class="trainer-head">
+      <div>
+        <h2>Тренажёр слов</h2>
+        <p>Выберите тему и режим — карточки или квиз. Нажимайте 🔊, чтобы услышать произношение.</p>
+      </div>
+      <div class="progress-pill" id="progressPill">Выучено: 0 слов</div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div class="mode-row">
+      <button class="mode-btn active" id="modeCards">Карточки</button>
+      <button class="mode-btn" id="modeQuiz">Квиз</button>
+    </div>
+
+    <div id="cardsView" class="grid"></div>
+
+    <div id="quizView" class="quiz-box" style="display:none;">
+      <div class="q-label">Как будет по-сербски</div>
+      <div class="q-word" id="quizWord">—</div>
+      <div class="options" id="quizOptions"></div>
+      <div class="quiz-stats">
+        <div>Правильно: <b id="quizCorrect">0</b></div>
+        <div>Серия: <b id="quizStreak">0</b></div>
+      </div>
+      <button class="btn btn-primary quiz-next" id="quizNext">Дальше →</button>
+    </div>
+  </div>
+</section>
+
+<section class="ff" id="false-friends">
+  <div class="wrap">
+    <h2>⚠️ Ложные друзья переводчика</h2>
+    <p class="sub">Эти сербские слова похожи на русские — но значат совсем другое. Выучите их в первую очередь, чтобы не попасть в неловкую ситуацию.</p>
+    <div class="ff-grid" id="ffGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Zdravo — сербский для переезда · 2026
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  greetings: {
+    title: "Приветствия",
+    icon: "👋",
+    words: [
+      {ru:"Здравствуй(те) / Привет", sr:"Zdravo", pron:"здраво"},
+      {ru:"Доброе утро", sr:"Dobro jutro", pron:"добро ютро"},
+      {ru:"Добрый день", sr:"Dobar dan", pron:"добар дан"},
+      {ru:"Добрый вечер", sr:"Dobro veče", pron:"добро вече"},
+      {ru:"Спокойной ночи", sr:"Laku noć", pron:"лаку ночь"},
+      {ru:"Пока", sr:"Ćao", pron:"чао"},
+      {ru:"До свидания", sr:"Doviđenja", pron:"довидженя"},
+      {ru:"Увидимся", sr:"Vidimo se", pron:"видимо се"},
+      {ru:"Спасибо", sr:"Hvala", pron:"хвала"},
+      {ru:"Большое спасибо", sr:"Hvala lepo", pron:"хвала лепо"},
+      {ru:"Пожалуйста (просьба)", sr:"Molim", pron:"молим"},
+      {ru:"Не за что", sr:"Nema na čemu", pron:"нема на чему"},
+      {ru:"Извините", sr:"Izvinite", pron:"извините"},
+      {ru:"Повторите, пожалуйста", sr:"Molim vas, ponovite", pron:"молим вас, поновите"},
+      {ru:"Да", sr:"Da", pron:"да"},
+      {ru:"Нет", sr:"Ne", pron:"не"},
+      {ru:"Хорошо", sr:"Dobro", pron:"добро"},
+      {ru:"Плохо", sr:"Loše", pron:"лоше"},
+      {ru:"Конечно", sr:"Naravno", pron:"наравно"},
+      {ru:"Возможно", sr:"Možda", pron:"можда"},
+      {ru:"Как дела?", sr:"Kako si?", pron:"како си"},
+      {ru:"Меня зовут...", sr:"Zovem se...", pron:"зовем се"},
+      {ru:"Как вас зовут?", sr:"Kako se zovete?", pron:"како се зовете"},
+      {ru:"Откуда вы?", sr:"Odakle ste?", pron:"одакле сте"},
+      {ru:"Я из России", sr:"Ja sam iz Rusije", pron:"я сам из русие"},
+      {ru:"Приятно познакомиться", sr:"Drago mi je", pron:"драго ми е"},
+    ]
+  },
+  numbers: {
+    title: "Числа",
+    icon: "🔢",
+    words: [
+      {ru:"ноль", sr:"nula", pron:"нула"},
+      {ru:"один", sr:"jedan", pron:"едан"},
+      {ru:"два", sr:"dva", pron:"два"},
+      {ru:"три", sr:"tri", pron:"три"},
+      {ru:"четыре", sr:"četiri", pron:"четыри"},
+      {ru:"пять", sr:"pet", pron:"пет"},
+      {ru:"шесть", sr:"šest", pron:"шест"},
+      {ru:"семь", sr:"sedam", pron:"седам"},
+      {ru:"восемь", sr:"osam", pron:"осам"},
+      {ru:"девять", sr:"devet", pron:"девет"},
+      {ru:"десять", sr:"deset", pron:"десет"},
+      {ru:"одиннадцать", sr:"jedanaest", pron:"еданаест"},
+      {ru:"двенадцать", sr:"dvanaest", pron:"дванаест"},
+      {ru:"двадцать", sr:"dvadeset", pron:"двадесет"},
+      {ru:"тридцать", sr:"trideset", pron:"тридесет"},
+      {ru:"сорок", sr:"četrdeset", pron:"четрдесет"},
+      {ru:"пятьдесят", sr:"pedeset", pron:"педесет"},
+      {ru:"сто", sr:"sto", pron:"сто"},
+      {ru:"тысяча", sr:"hiljada", pron:"хиляда"},
+    ]
+  },
+  relocation: {
+    title: "Переезд и бюрократия",
+    icon: "🏛️",
+    words: [
+      {ru:"Где находится...?", sr:"Gde se nalazi...?", pron:"где се налази"},
+      {ru:"Мне нужна помощь", sr:"Treba mi pomoć", pron:"треба ми помоч"},
+      {ru:"Я не понимаю", sr:"Ne razumem", pron:"не разумем"},
+      {ru:"Вы говорите по-английски?", sr:"Da li govorite engleski?", pron:"да ли говорите енглески"},
+      {ru:"Сколько это стоит?", sr:"Koliko ovo košta?", pron:"колико ово кошта"},
+      {ru:"Вид на жительство", sr:"Boravišna dozvola", pron:"боравишна дозвола"},
+      {ru:"Регистрация проживания", sr:"Prijava boravka", pron:"приява боравка"},
+      {ru:"Паспорт", sr:"Pasoš", pron:"пасош"},
+      {ru:"Банк", sr:"Banka", pron:"банка"},
+      {ru:"Банковский счёт", sr:"Bankovni račun", pron:"банковни рачун"},
+      {ru:"Аптека", sr:"Apoteka", pron:"апотека"},
+      {ru:"Мне нужен врач", sr:"Treba mi lekar", pron:"треба ми лекар"},
+      {ru:"Скорая помощь", sr:"Hitna pomoć", pron:"хитна помоч"},
+      {ru:"Полиция", sr:"Policija", pron:"полиция"},
+      {ru:"Больница", sr:"Bolnica", pron:"болница"},
+      {ru:"Почта", sr:"Pošta", pron:"пошта"},
+      {ru:"Договор аренды", sr:"Ugovor o zakupu", pron:"уговор о закупу"},
+      {ru:"Квартира", sr:"Stan", pron:"стан"},
+      {ru:"Сим-карта", sr:"SIM kartica", pron:"сим-картица"},
+      {ru:"Школа", sr:"Škola", pron:"школа"},
+      {ru:"Детский сад", sr:"Vrtić", pron:"вртич"},
+      {ru:"Где туалет?", sr:"Gde je toalet?", pron:"где е туалет"},
+      {ru:"Открыто / Закрыто", sr:"Otvoreno / Zatvoreno", pron:"отворено / затворено"},
+    ]
+  },
+  daily: {
+    title: "Покупки и транспорт",
+    icon: "🛒",
+    words: [
+      {ru:"Магазин", sr:"Prodavnica", pron:"продавница"},
+      {ru:"Рынок", sr:"Pijaca", pron:"пияца"},
+      {ru:"Автобус", sr:"Autobus", pron:"аутобус"},
+      {ru:"Трамвай", sr:"Tramvaj", pron:"трамвай"},
+      {ru:"Такси", sr:"Taksi", pron:"такси"},
+      {ru:"Поезд", sr:"Voz", pron:"воз"},
+      {ru:"Самолёт", sr:"Avion", pron:"авион"},
+      {ru:"Аэропорт", sr:"Aerodrom", pron:"аеродром"},
+      {ru:"Машина", sr:"Auto", pron:"ауто"},
+      {ru:"Парковка", sr:"Parking", pron:"паркинг"},
+      {ru:"Вокзал / остановка", sr:"Stanica", pron:"станица"},
+      {ru:"Билет", sr:"Karta", pron:"карта"},
+      {ru:"Сколько стоит билет?", sr:"Koliko košta karta?", pron:"колико кошта карта"},
+      {ru:"Багаж", sr:"Prtljag", pron:"пртляг"},
+      {ru:"Отель", sr:"Hotel", pron:"хотел"},
+      {ru:"Дёшево", sr:"Jeftino", pron:"ефтино"},
+      {ru:"Дорого", sr:"Skupo", pron:"скупо"},
+      {ru:"Скидка", sr:"Popust", pron:"попуст"},
+      {ru:"Наличные", sr:"Gotovina", pron:"готовина"},
+      {ru:"Сдача", sr:"Kusur", pron:"кусур"},
+      {ru:"Пакет", sr:"Kesa", pron:"кеса"},
+      {ru:"Ресторан", sr:"Restoran", pron:"ресторан"},
+      {ru:"Меню", sr:"Jelovnik", pron:"еловник"},
+      {ru:"Счёт, пожалуйста", sr:"Račun, molim", pron:"рачун, молим"},
+    ]
+  },
+  clothes: {
+    title: "Одежда и обувь",
+    icon: "👕",
+    words: [
+      {ru:"Одежда", sr:"Odeća", pron:"одеча"},
+      {ru:"Обувь", sr:"Obuća", pron:"обуча"},
+      {ru:"Рубашка", sr:"Košulja", pron:"кошуля"},
+      {ru:"Футболка", sr:"Majica", pron:"майица"},
+      {ru:"Брюки", sr:"Pantalone", pron:"панталоне"},
+      {ru:"Джинсы", sr:"Farmerke", pron:"фармерке"},
+      {ru:"Платье", sr:"Haljina", pron:"халина"},
+      {ru:"Юбка", sr:"Suknja", pron:"сукня"},
+      {ru:"Куртка", sr:"Jakna", pron:"якна"},
+      {ru:"Пальто", sr:"Kaput", pron:"капут"},
+      {ru:"Свитер", sr:"Džemper", pron:"джемпер"},
+      {ru:"Носки", sr:"Čarape", pron:"чарапе"},
+      {ru:"Ботинки", sr:"Čizme", pron:"чизме"},
+      {ru:"Кроссовки", sr:"Patike", pron:"патике"},
+      {ru:"Шапка", sr:"Kapa", pron:"капа"},
+      {ru:"Шарф", sr:"Šal", pron:"шал"},
+      {ru:"Перчатки", sr:"Rukavice", pron:"рукавице"},
+      {ru:"Ремень", sr:"Kaiš", pron:"каиш"},
+      {ru:"Размер", sr:"Veličina", pron:"величина"},
+      {ru:"Можно примерить?", sr:"Mogu li da probam?", pron:"могу ли да пробам"},
+    ]
+  },
+  food: {
+    title: "Еда и напитки",
+    icon: "🍽️",
+    words: [
+      {ru:"Завтрак", sr:"Doručak", pron:"доручак"},
+      {ru:"Обед", sr:"Ručak", pron:"ручак"},
+      {ru:"Ужин", sr:"Večera", pron:"вечера"},
+      {ru:"Хлеб", sr:"Hleb", pron:"хлеб"},
+      {ru:"Мясо", sr:"Meso", pron:"месо"},
+      {ru:"Курица", sr:"Piletina", pron:"пилетина"},
+      {ru:"Говядина", sr:"Govedina", pron:"говедина"},
+      {ru:"Свинина", sr:"Svinjetina", pron:"свинетина"},
+      {ru:"Рыба", sr:"Riba", pron:"риба"},
+      {ru:"Яйца", sr:"Jaja", pron:"яя"},
+      {ru:"Сыр", sr:"Sir", pron:"сир"},
+      {ru:"Молоко", sr:"Mleko", pron:"млеко"},
+      {ru:"Йогурт", sr:"Jogurt", pron:"йогурт"},
+      {ru:"Масло (сливочное)", sr:"Puter", pron:"путер"},
+      {ru:"Сахар", sr:"Šećer", pron:"шечер"},
+      {ru:"Соль", sr:"So", pron:"со"},
+      {ru:"Перец", sr:"Biber", pron:"бибер"},
+      {ru:"Овощи", sr:"Povrće", pron:"поврче"},
+      {ru:"Фрукты", sr:"Voće", pron:"воче"},
+      {ru:"Картофель", sr:"Krompir", pron:"кромпир"},
+      {ru:"Помидор", sr:"Paradajz", pron:"парадайз"},
+      {ru:"Огурец", sr:"Krastavac", pron:"краставац"},
+      {ru:"Лук", sr:"Crni luk", pron:"црни лук"},
+      {ru:"Яблоко", sr:"Jabuka", pron:"ябука"},
+      {ru:"Апельсин", sr:"Pomorandža", pron:"поморанджа"},
+      {ru:"Банан", sr:"Banana", pron:"банана"},
+      {ru:"Вода", sr:"Voda", pron:"вода"},
+      {ru:"Сок", sr:"Sok", pron:"сок"},
+      {ru:"Кофе", sr:"Kafa", pron:"кафа"},
+      {ru:"Чай", sr:"Čaj", pron:"чай"},
+      {ru:"Вино", sr:"Vino", pron:"вино"},
+      {ru:"Пиво", sr:"Pivo", pron:"пиво"},
+      {ru:"Вкусно", sr:"Ukusno", pron:"укусно"},
+      {ru:"Сладкий", sr:"Sladak", pron:"сладак"},
+      {ru:"Острый", sr:"Ljut", pron:"лют"},
+      {ru:"Ещё одно, пожалуйста", sr:"Još jedno, molim", pron:"йош едно, молим"},
+    ]
+  },
+  colors: {
+    title: "Цвета",
+    icon: "🎨",
+    words: [
+      {ru:"Красный", sr:"Crven", pron:"црвен"},
+      {ru:"Синий", sr:"Plav", pron:"плав"},
+      {ru:"Зелёный", sr:"Zelen", pron:"зелен"},
+      {ru:"Жёлтый", sr:"Žut", pron:"жут"},
+      {ru:"Чёрный", sr:"Crn", pron:"црн"},
+      {ru:"Белый", sr:"Beo", pron:"бео"},
+      {ru:"Серый", sr:"Siv", pron:"сив"},
+      {ru:"Розовый", sr:"Roze", pron:"розе"},
+      {ru:"Оранжевый", sr:"Narandžast", pron:"народжаст"},
+      {ru:"Коричневый", sr:"Braon", pron:"браон"},
+    ]
+  },
+  family: {
+    title: "Семья",
+    icon: "👪",
+    words: [
+      {ru:"Семья", sr:"Porodica", pron:"породица"},
+      {ru:"Мама", sr:"Mama", pron:"мама"},
+      {ru:"Папа", sr:"Tata", pron:"тата"},
+      {ru:"Сын", sr:"Sin", pron:"син"},
+      {ru:"Дочь", sr:"Ćerka", pron:"черка"},
+      {ru:"Брат", sr:"Brat", pron:"брат"},
+      {ru:"Сестра", sr:"Sestra", pron:"сестра"},
+      {ru:"Муж", sr:"Muž", pron:"муж"},
+      {ru:"Жена", sr:"Žena", pron:"жена"},
+      {ru:"Бабушка", sr:"Baka", pron:"бака"},
+      {ru:"Дедушка", sr:"Deda", pron:"деда"},
+      {ru:"Дети", sr:"Deca", pron:"деца"},
+      {ru:"Друг", sr:"Prijatelj", pron:"прияатель"},
+    ]
+  },
+  time: {
+    title: "Время и дни недели",
+    icon: "🕐",
+    words: [
+      {ru:"Понедельник", sr:"Ponedeljak", pron:"понедельяк"},
+      {ru:"Вторник", sr:"Utorak", pron:"уторак"},
+      {ru:"Среда", sr:"Sreda", pron:"среда"},
+      {ru:"Четверг", sr:"Četvrtak", pron:"четвртак"},
+      {ru:"Пятница", sr:"Petak", pron:"петак"},
+      {ru:"Суббота", sr:"Subota", pron:"субота"},
+      {ru:"Воскресенье", sr:"Nedelja", pron:"неделя"},
+      {ru:"Сегодня", sr:"Danas", pron:"данас"},
+      {ru:"Завтра", sr:"Sutra", pron:"сутра"},
+      {ru:"Вчера", sr:"Juče", pron:"юче"},
+      {ru:"Сейчас", sr:"Sada", pron:"сада"},
+      {ru:"Утро", sr:"Jutro", pron:"ютро"},
+      {ru:"День", sr:"Dan", pron:"дан"},
+      {ru:"Вечер", sr:"Veče", pron:"вече"},
+      {ru:"Ночь", sr:"Noć", pron:"ночь"},
+      {ru:"Который час?", sr:"Koliko je sati?", pron:"колико е сати"},
+      {ru:"Час", sr:"Sat", pron:"сат"},
+      {ru:"Минута", sr:"Minut", pron:"минут"},
+      {ru:"Неделя", sr:"Nedelja", pron:"неделя"},
+      {ru:"Месяц", sr:"Mesec", pron:"месец"},
+      {ru:"Год", sr:"Godina", pron:"година"},
+    ]
+  },
+  home: {
+    title: "Дом и мебель",
+    icon: "🏠",
+    words: [
+      {ru:"Дом", sr:"Kuća", pron:"куча"},
+      {ru:"Квартира", sr:"Stan", pron:"стан"},
+      {ru:"Кухня", sr:"Kuhinja", pron:"кухиня"},
+      {ru:"Ванная", sr:"Kupatilo", pron:"купатило"},
+      {ru:"Спальня", sr:"Spavaća soba", pron:"спавача соба"},
+      {ru:"Гостиная", sr:"Dnevna soba", pron:"дневна соба"},
+      {ru:"Дверь", sr:"Vrata", pron:"врата"},
+      {ru:"Окно", sr:"Prozor", pron:"прозор"},
+      {ru:"Стол", sr:"Sto", pron:"сто"},
+      {ru:"Стул", sr:"Stolica", pron:"столица"},
+      {ru:"Кровать", sr:"Krevet", pron:"кревет"},
+      {ru:"Ключ", sr:"Ključ", pron:"ключ"},
+      {ru:"Свет", sr:"Svetlo", pron:"светло"},
+      {ru:"Мебель", sr:"Nameštaj", pron:"намештай"},
+      {ru:"Холодильник", sr:"Frižider", pron:"фрижидер"},
+    ]
+  },
+  weather: {
+    title: "Погода",
+    icon: "☀️",
+    words: [
+      {ru:"Погода", sr:"Vreme", pron:"време"},
+      {ru:"Солнце", sr:"Sunce", pron:"сунце"},
+      {ru:"Дождь", sr:"Kiša", pron:"киша"},
+      {ru:"Снег", sr:"Sneg", pron:"снег"},
+      {ru:"Ветер", sr:"Vetar", pron:"ветар"},
+      {ru:"Облако", sr:"Oblak", pron:"облак"},
+      {ru:"Жарко", sr:"Vruće", pron:"вруче"},
+      {ru:"Холодно", sr:"Hladno", pron:"хладно"},
+      {ru:"Тепло", sr:"Toplo", pron:"топло"},
+    ]
+  },
+  body: {
+    title: "Тело и здоровье",
+    icon: "🩺",
+    words: [
+      {ru:"Голова", sr:"Glava", pron:"глава"},
+      {ru:"Рука", sr:"Ruka", pron:"рука"},
+      {ru:"Нога", sr:"Noga", pron:"нога"},
+      {ru:"Глаза", sr:"Oči", pron:"очи"},
+      {ru:"Спина", sr:"Leđa", pron:"леджа"},
+      {ru:"Болит", sr:"Boli", pron:"боли"},
+      {ru:"Здоровье", sr:"Zdravlje", pron:"здравле"},
+      {ru:"Больной", sr:"Bolestan", pron:"болестан"},
+      {ru:"Температура", sr:"Temperatura", pron:"температура"},
+      {ru:"Лекарство", sr:"Lek", pron:"лек"},
+    ]
+  },
+  phrases: {
+    title: "Спроси и ответь",
+    icon: "💬",
+    words: [
+      {ru:"Как дела?", sr:"Kako si?", pron:"како си"},
+      {ru:"Хорошо, а у тебя?", sr:"Dobro, a ti?", pron:"добро, а ти"},
+      {ru:"Как вас зовут?", sr:"Kako se zovete?", pron:"како се зовете"},
+      {ru:"Меня зовут...", sr:"Zovem se...", pron:"зовем се"},
+      {ru:"Откуда вы?", sr:"Odakle ste?", pron:"одакле сте"},
+      {ru:"Я из России", sr:"Ja sam iz Rusije", pron:"я сам из русие"},
+      {ru:"Сколько это стоит?", sr:"Koliko ovo košta?", pron:"колико ово кошта"},
+      {ru:"Пятьсот динаров", sr:"Petsto dinara", pron:"петсто динара"},
+      {ru:"Вы говорите по-английски?", sr:"Da li govorite engleski?", pron:"да ли говорите енглески"},
+      {ru:"Немного", sr:"Malo", pron:"мало"},
+      {ru:"Где находится вокзал?", sr:"Gde se nalazi stanica?", pron:"где се налази станица"},
+      {ru:"Прямо, потом налево", sr:"Pravo, pa levo", pron:"право, па лево"},
+      {ru:"Можно счёт, пожалуйста?", sr:"Mogu li dobiti račun, molim?", pron:"могу ли добити рачун, молим"},
+      {ru:"Конечно, минутку", sr:"Naravno, samo trenutak", pron:"наравно, само тренутак"},
+      {ru:"У вас есть свободный столик?", sr:"Imate li slobodan sto?", pron:"имате ли слободан сто"},
+      {ru:"Да, пожалуйста, проходите", sr:"Da, izvolite", pron:"да, изволите"},
+      {ru:"Который час?", sr:"Koliko je sati?", pron:"колико е сати"},
+      {ru:"Три часа", sr:"Tri sata", pron:"три сата"},
+      {ru:"Можно примерить?", sr:"Mogu li da probam?", pron:"могу ли да пробам"},
+      {ru:"Да, примерочная там", sr:"Da, kabina je tamo", pron:"да, кабина е тамо"},
+      {ru:"Что вы порекомендуете?", sr:"Šta biste preporučili?", pron:"шта бисте препоручили"},
+      {ru:"Это очень вкусно", sr:"Ovo je jako ukusno", pron:"ово е яко укусно"},
+      {ru:"Мне нужна помощь", sr:"Treba mi pomoć", pron:"треба ми помоч"},
+      {ru:"Конечно, чем могу помочь?", sr:"Naravno, kako mogu da pomognem?", pron:"наравно, како могу да помогнем"},
+      {ru:"Я не понимаю", sr:"Ne razumem", pron:"не разумем"},
+      {ru:"Повторите, пожалуйста", sr:"Ponovite, molim", pron:"поновите, молим"},
+      {ru:"Где ближайшая аптека?", sr:"Gde je najbliža apoteka?", pron:"где е найближа апотека"},
+      {ru:"За углом", sr:"Iza ugla", pron:"иза угла"},
+      {ru:"Это далеко?", sr:"Da li je to daleko?", pron:"да ли е то далеко"},
+      {ru:"Нет, близко", sr:"Ne, blizu je", pron:"не, близу е"},
+    ]
+  },
+  combos: {
+    title: "Словосочетания",
+    icon: "🧩",
+    words: [
+      {ru:"Белая рубашка", sr:"Bela košulja", pron:"бела кошуля"},
+      {ru:"Чёрные брюки", sr:"Crne pantalone", pron:"црне панталоне"},
+      {ru:"Свежий хлеб", sr:"Svež hleb", pron:"свеж хлеб"},
+      {ru:"Большой стол", sr:"Veliki sto", pron:"велики сто"},
+      {ru:"Маленькая квартира", sr:"Mali stan", pron:"мали стан"},
+      {ru:"Холодная вода", sr:"Hladna voda", pron:"хладна вода"},
+      {ru:"Горячий кофе", sr:"Vruća kafa", pron:"вруча кафа"},
+      {ru:"Красное вино", sr:"Crveno vino", pron:"црвено вино"},
+      {ru:"Новая машина", sr:"Novi auto", pron:"нови ауто"},
+      {ru:"Старый дом", sr:"Stara kuća", pron:"стара куча"},
+      {ru:"Дорогой отель", sr:"Skup hotel", pron:"скуп хотел"},
+      {ru:"Дешёвый билет", sr:"Jeftina karta", pron:"ефтина карта"},
+      {ru:"Хорошая погода", sr:"Lepo vreme", pron:"лепо време"},
+      {ru:"Плохая погода", sr:"Loše vreme", pron:"лоше време"},
+      {ru:"Большая семья", sr:"Velika porodica", pron:"велика породица"},
+      {ru:"Тёплый свитер", sr:"Topli džemper", pron:"топли джемпер"},
+      {ru:"Удобная обувь", sr:"Udobna obuća", pron:"удобна обуча"},
+      {ru:"Быстрый автобус", sr:"Brz autobus", pron:"брз аутобус"},
+      {ru:"Зелёные глаза", sr:"Zelene oči", pron:"зелене очи"},
+      {ru:"Долгий день", sr:"Dug dan", pron:"дуг дан"},
+      {ru:"Короткая ночь", sr:"Kratka noć", pron:"кратка ночь"},
+    ]
+  }
+};
+
+const FALSE_FRIENDS = [
+  {sr:"ponos", looks:"понос", means:"ГОРДОСТЬ"},
+  {sr:"život", looks:"живот", means:"ЖИЗНЬ (не часть тела)"},
+  {sr:"kuća", looks:"куча", means:"ДОМ"},
+  {sr:"trudna", looks:"трудна", means:"БЕРЕМЕННА"},
+  {sr:"vrednost", looks:"вредность", means:"ЦЕННОСТЬ"},
+  {sr:"iskustvo", looks:"искуство", means:"ОПЫТ"},
+  {sr:"pozorište", looks:"позориште", means:"ТЕАТР"},
+  {sr:"reč", looks:"реч", means:"СЛОВО"},
+  {sr:"brak", looks:"брак", means:"СВАДЬБА / БРАК (не испорченный товар)"},
+  {sr:"stanica", looks:"станица", means:"ВОКЗАЛ / ОСТАНОВКА (не казачье поселение)"},
+  {sr:"majka", looks:"майка", means:"МАТЬ (не одежда)"},
+  {sr:"stolica", looks:"столица", means:"СТУЛ (не главный город)"},
+];
+
+const STORAGE_KEY = "zdravo_learned_words";
+let storageOK = true;
+let memoryStore = {};
+
+function lsGet(key){
+  try{ return window.localStorage.getItem(key); }
+  catch(e){ storageOK = false; return memoryStore.hasOwnProperty(key) ? memoryStore[key] : null; }
+}
+function lsSet(key, value){
+  try{ window.localStorage.setItem(key, value); }
+  catch(e){ storageOK = false; memoryStore[key] = value; }
+}
+
+let learned;
+try{
+  learned = new Set(JSON.parse(lsGet(STORAGE_KEY) || "[]"));
+}catch(e){
+  learned = new Set();
+}
+let currentCat = "greetings";
+let mode = "cards";
+let quizCorrect = 0, quizStreak = 0, quizWordKey = null, quizAnswered = false;
+
+function wordKey(cat, sr){ return cat + "::" + sr; }
+
+let cachedVoices = [];
+function loadVoices(){
+  if("speechSynthesis" in window) cachedVoices = window.speechSynthesis.getVoices();
+}
+if("speechSynthesis" in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function pickVoice(){
+  const priority = ["sr-rs","sr-latn-rs","sr","hr-hr","hr","bs-ba","bs"];
+  for(const lang of priority){
+    const exact = cachedVoices.find(v => v.lang.toLowerCase() === lang);
+    if(exact) return exact;
+  }
+  for(const lang of priority){
+    const prefix = lang.split("-")[0];
+    const starts = cachedVoices.find(v => v.lang.toLowerCase().startsWith(prefix));
+    if(starts) return starts;
+  }
+  return null;
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const voice = pickVoice();
+  if(voice){
+    u.voice = voice;
+    u.lang = voice.lang;
+  } else {
+    u.lang = "sr-RS";
+  }
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+function makeSpeakBtn(text){
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "speak-btn";
+  b.setAttribute("aria-label", "Слушать произношение");
+  b.textContent = "🔊";
+  b.addEventListener("click", (e) => {
+    e.stopPropagation();
+    speak(text);
+  });
+  return b;
+}
+
+function saveLearned(){
+  lsSet(STORAGE_KEY, JSON.stringify([...learned]));
+  document.getElementById("progressPill").textContent = "Выучено: " + learned.size + " слов"
+    + (storageOK ? "" : " (не сохранится)");
+}
+
+function renderTabs(){
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = "";
+  Object.keys(DATA).forEach(key => {
+    const b = document.createElement("button");
+    b.className = "tab" + (key === currentCat ? " active" : "");
+    b.textContent = DATA[key].icon + " " + DATA[key].title;
+    b.onclick = () => { currentCat = key; render(); };
+    tabs.appendChild(b);
+  });
+}
+
+function renderCards(){
+  const view = document.getElementById("cardsView");
+  view.innerHTML = "";
+  DATA[currentCat].words.forEach(w => {
+    const key = wordKey(currentCat, w.sr);
+    const el = document.createElement("div");
+    el.className = "flip-card" + (learned.has(key) ? " learned" : "");
+    el.innerHTML = `
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <span class="learned-dot"></span>
+          <div class="word">${w.ru}</div>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="word">${w.sr}</div>
+          <div class="pron">[${w.pron}]</div>
+        </div>
+      </div>`;
+    el.querySelector(".flip-back").prepend(makeSpeakBtn(w.sr));
+    el.onclick = () => {
+      el.classList.toggle("flipped");
+      if(el.classList.contains("flipped")){
+        learned.add(key);
+        el.classList.add("learned");
+        saveLearned();
+      }
+    };
+    view.appendChild(el);
+  });
+}
+
+function pickQuizQuestion(){
+  const words = DATA[currentCat].words;
+  const correct = words[Math.floor(Math.random() * words.length)];
+  quizWordKey = wordKey(currentCat, correct.sr);
+  quizAnswered = false;
+  document.getElementById("quizWord").textContent = correct.ru;
+
+  let pool = words.filter(w => w.sr !== correct.sr);
+  pool.sort(() => Math.random() - 0.5);
+  const wrong = pool.slice(0, Math.min(3, pool.length));
+  const options = [correct, ...wrong].sort(() => Math.random() - 0.5);
+
+  const optBox = document.getElementById("quizOptions");
+  optBox.innerHTML = "";
+  document.getElementById("quizNext").style.display = "none";
+
+  options.forEach(w => {
+    const b = document.createElement("div");
+    b.className = "opt";
+    b.dataset.sr = w.sr;
+    b.innerHTML = `
+      <div class="opt-word">${w.sr}</div>
+      <div class="opt-pron">[${w.pron}]</div>`;
+    b.appendChild(makeSpeakBtn(w.sr));
+    b.addEventListener("click", () => {
+      if(quizAnswered) return;
+      answerQuiz(b, w.sr, correct.sr);
+    });
+    optBox.appendChild(b);
+  });
+}
+
+function answerQuiz(el, chosen, correctSr){
+  quizAnswered = true;
+  if(chosen === correctSr){
+    el.classList.add("correct");
+    quizCorrect++; quizStreak++;
+    learned.add(quizWordKey);
+    saveLearned();
+  } else {
+    el.classList.add("wrong");
+    quizStreak = 0;
+    document.querySelectorAll("#quizOptions .opt").forEach(o => {
+      if(o.dataset.sr === correctSr) o.classList.add("correct");
+    });
+  }
+  document.getElementById("quizCorrect").textContent = quizCorrect;
+  document.getElementById("quizStreak").textContent = quizStreak;
+  document.getElementById("quizNext").style.display = "inline-flex";
+}
+
+function renderFalseFriends(){
+  const grid = document.getElementById("ffGrid");
+  grid.innerHTML = "";
+  FALSE_FRIENDS.forEach(f => {
+    const el = document.createElement("div");
+    el.className = "ff-card";
+    el.innerHTML = `
+      <div class="sr-word-row">
+        <span class="sr-word">${f.sr}</span>
+      </div>
+      <div class="looks">похоже на «<span>${f.looks}</span>», но нет</div>
+      <div class="means">на самом деле — <b>${f.means}</b></div>`;
+    el.querySelector(".sr-word-row").appendChild(makeSpeakBtn(f.sr));
+    grid.appendChild(el);
+  });
+}
+
+function render(){
+  renderTabs();
+  saveLearned();
+  if(mode === "cards"){
+    document.getElementById("cardsView").style.display = "grid";
+    document.getElementById("quizView").style.display = "none";
+    renderCards();
+  } else {
+    document.getElementById("cardsView").style.display = "none";
+    document.getElementById("quizView").style.display = "block";
+    pickQuizQuestion();
+  }
+}
+
+document.getElementById("modeCards").onclick = () => {
+  mode = "cards";
+  document.getElementById("modeCards").classList.add("active");
+  document.getElementById("modeQuiz").classList.remove("active");
+  render();
+};
+document.getElementById("modeQuiz").onclick = () => {
+  mode = "quiz";
+  document.getElementById("modeQuiz").classList.add("active");
+  document.getElementById("modeCards").classList.remove("active");
+  render();
+};
+document.getElementById("quizNext").onclick = pickQuizQuestion;
+
+renderFalseFriends();
+render();
+</script>
+
+</body>
+</html>
